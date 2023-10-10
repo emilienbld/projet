@@ -1,0 +1,3 @@
+﻿  App.c
+C:\Users\33782\source\repos\projet\projet\App.c(11,11): warning C4244: 'fonction' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  projet.vcxproj -> C:\Users\33782\source\repos\projet\x64\Debug\projet.exe
