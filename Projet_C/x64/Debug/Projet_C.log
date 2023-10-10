@@ -1,0 +1,7 @@
+﻿  machine.c
+C:\Users\Tarik\Documents\Amar_cours\Projet_C\Projet_C\machine.c(14,11): warning C4244: 'fonction' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\Tarik\Documents\Amar_cours\Projet_C\Projet_C\machine.c(63,29): warning C4473: 'scanf_s' : nombre insuffisant d'arguments passés pour la chaîne de format
+C:\Users\Tarik\Documents\Amar_cours\Projet_C\Projet_C\machine.c(63,29): message : les espaces réservés et leurs paramètres attendent des arguments 2 variadiques, mais des arguments 1 ont été fournis
+C:\Users\Tarik\Documents\Amar_cours\Projet_C\Projet_C\machine.c(63,29): message : l'argument variadique manquant 2 est demandé par la chaîne de format '%c'
+C:\Users\Tarik\Documents\Amar_cours\Projet_C\Projet_C\machine.c(63,29): message : cet argument est utilisé comme taille de mémoire tampon
+  Projet_C.vcxproj -> C:\Users\Tarik\Documents\Amar_cours\Projet_C\x64\Debug\Projet_C.exe
