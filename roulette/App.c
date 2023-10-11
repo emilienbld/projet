@@ -21,7 +21,7 @@ int main() {
 
     // Boucle du jeu 
     while (1) {
-        printf("0 - Quitter le jeu\n");
+        printf("\n\n0 - Quitter le jeu\n");
         printf("1 - Jouer\n");
 
         printf("Choisissez une option : ");
@@ -34,44 +34,53 @@ int main() {
             break;
         }
         else if (choix == 1) {
-            int mise;
-            printf("Entrez votre mise : ");
-            scanf_s("%d", &mise);
-            int pari;
-            printf("Entrez votre pari : ");
-            scanf_s("%d, &pari");
+            //Combien le joueur veux miser
+            //int mise;
+            //printf("Entrez votre mise : ");
+            //scanf_s("%d", &mise);
+            //
+            //if (mise <= 0) {
+            //    printf("Mise invalide. La mise doit être supérieure à zéro.\n");
+            //    continue;
+            //}
 
-            if (mise <= 0) {
-                printf("Mise invalide. La mise doit être supérieure à zéro.\n");
-                continue;
+            ////Choix du pari
+            //int pari;
+            //printf("Faites vos jeux : ");
+            //scanf_s("%d", &pari);
+
+            int nbParis;
+            printf("Combien de paris souhaitez-vous faire ? ");
+            scanf("%d", &nbParis);
+
+            int paris[100]; // Vous pouvez ajuster la taille selon vos besoins
+            int mises[100];
+
+            for (int i = 0; i < nbParis; i++) {
+                printf("Pari %d : Entrez le numéro : ");
+                scanf("%d", &paris[i]);
+                printf("Entrez la mise correspondante : ");
+                scanf("%d", &mises[i]);
             }
+
+            gain(paris, mises, nbParis);
+
 
             int numeroGagnant = numeroAleatoire(37); // Génère un numéro aléatoire entre 0 et 36
 
-            printf("La roulette tourne...\n");
+            printf("Rien ne vas plus...\n");
             int numeroChoisi = numeros[numeroGagnant];
             printf("Le numéro gagnant est : %d\n", numeroChoisi);
 
-
-            // Couleur des numéros
-            //int numeroGagnant = 0; // Vous pouvez changer le numéro ici pour tester
-            //afficherCouleur(numeros[numeroGagnant]);
-
-
-            //printf("La couleur du numéro gagnant est : ");
-            //afficherCouleur(numeroChoisi);
-
-            printf("La parité du numéro gagnant est : ");
             afficherParite(numeroChoisi);
-
-            printf("Le numéro gagnant est dans : ");
             afficherPassManque(numeroChoisi);
-
-            printf("Plage du numéro gagnant : ");
             afficherPlage(numeroChoisi);
-
-            printf("Tiers du numéro gagnant : ");
             afficherTiers(numeroChoisi);
+            
+            //gain(pari, numeroChoisi, mise);
+            //gain(paris, mises, nbParis);
+
+
         }
     }
     printf("\n\n");

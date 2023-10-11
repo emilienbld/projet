@@ -1,18 +1,16 @@
+#include "Launcher.h"
 #define _CRT_SECURE_NO_WARNINGS
 
 void Start() {
 	printf("Jeu de Roulette de Casino.\n");
 };
 
-int Menu() {
-	enum MenuButtons {
-		Nouvelle_partie = 1,
-		Quitter
-	};
+void Menu() {
+
 };
 
-int End() {
-	End(0);
+void End() {
+	exit(0);
 };
 
 int numeroAleatoire(int max) {
@@ -22,49 +20,49 @@ int numeroAleatoire(int max) {
 //Couleur du numéro gagnant
 //void afficherCouleur(numeros) {
 //	if (numeros == 0) {
-//		printf("vert\n");
+//		printf("La couleur du numéro gagnant est : vertte\n");
 //	}
 //	else if (numeros % 2 == 0) {
-//		printf("noir\n");
+//		printf("La couleur du numéro gagnant est : noire\n");
 //	}
 //	else {
-//		printf("rouge\n");
+//		printf("La couleur du numéro gagnant est : rouge\n");
 //	}
 //}
 
 void afficherParite(int numero) {
 	if (numero == 0) {
-		printf("neutre\n");
+		printf("La parité du numéro gagnant est : neutre\n");
 	}
 	else if (numero % 2 == 0) {
-		printf("pair\n");
+		printf("La parité du numéro gagnant est : pair\n");
 	}
 	else {
-		printf("impair\n");
+		printf("La parité du numéro gagnant est : impair\n");
 	}
 }
 
 void afficherPassManque(int numero) {
 	if (numero == 0) {
-		printf("nul\n");
+		printf("Le numéro gagnant est : nul\n");
 	}
 	else if (numero >= 1 && numero <= 18) {
-		printf("pass\n");
+		printf("Le numéro gagnant est du côté : pass\n");
 	}
 	else if (numero >= 19 && numero <= 36) {
-		printf("manque\n");
+		printf("Le numéro gagnant est du côté : manque\n");
 	}
 }
 
 void afficherPlage(int numero) {
 	if (numero >= 1 && numero <= 12) {
-		printf("1 ers 12\n");
+		printf("Plage du numéro gagnant : 1 ers 12\n");
 	}
 	else if (numero >= 13 && numero <= 24) {
-		printf("2 nds 12\n");
+		printf("Plage du numéro gagnant : 2 nds 12\n");
 	}
 	else if (numero >= 25 && numero <= 36) {
-		printf("3 èmes 12\n");
+		printf("Plage du numéro gagnant : 3 èmes 12\n");
 	}
 }
 
@@ -90,12 +88,45 @@ void afficherTiers(int numero) {
 	}
 
 	if (estDansTiersUn) {
-		printf("t1\n");
+		printf("Le numéro gagnant est dans le tiers: t1\n");
 	}
 	else if (estDansTiersDeux) {
-		printf("t2\n");
+		printf("Le numéro gagnant est dans le tiers : t2\n");
 	}
 	else if (estDansTiersTrois) {
-		printf("t3\n");
+		printf("Le numéro gagnant est dans le tiers : t3\n");
+	}
+}
+
+//void gain(int pari, int numeroChoisi, int mise) {
+//	if (pari == numeroChoisi) {
+//		mise *= 36;
+//		printf("Félicitations ! Votre mise a été multipliée par 36.\n");
+//	}
+//	else {
+//		printf("Désolé, vous avez perdu votre mise.\n");
+//		mise = 0;
+//	}
+//	return mise;
+//}
+
+void gain(int paris[], int mises[], int nbParis) {
+	int totalGains = 0;
+	int numeroGagnant = numeroAleatoire(37); // Génère un numéro gagnant aléatoire
+	printf("Le numéro gagnant est : %d\n", numeroGagnant);
+
+	for (int i = 0; i < nbParis; i++) {
+		if (paris[i] == numeroGagnant) {
+			int gain = mises[i] * 36;
+			totalGains += gain;
+			printf("Pari sur le numéro %d, mise : %d, gain : %d\n", paris[i], mises[i], gain);
+		}
+	}
+
+	if (totalGains > 0) {
+		printf("Total des gains : %d\n", totalGains);
+	}
+	else {
+		printf("Désolé, vous avez perdu toutes vos mises.\n");
 	}
 }
