@@ -48,19 +48,6 @@ int numeroAleatoire(int max) {
 	return rand() % max;
 }
 
-//Couleur du numéro gagnant
-//void afficherCouleur(numeros) {
-//	if (numeros == 0) {
-//		printf("La couleur du numéro gagnant est : vert\n");
-//	}
-//	else if (numeros % 2 == 0) {
-//		printf("La couleur du numéro gagnant est : noir\n");
-//	}
-//	else {
-//		printf("La couleur du numéro gagnant est : rouge\n");
-//	}
-//}
-
 void afficherCouleur(int numeroGagnant) {
 	if (numeroGagnant == 0) {
 		printf("La couleur du numéro gagnant est : vert\n");
@@ -72,9 +59,6 @@ void afficherCouleur(int numeroGagnant) {
 		printf("La couleur du numéro gagnant est : noir\n");
 	}
 }
-
-
-
 
 void afficherParite(int numero) {
 	if (numero == 0) {
@@ -112,98 +96,7 @@ void afficherPlage(int numero) {
 	}
 }
 
-//void afficherTiers(int numero) {
-//	int TiersUn[12] = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
-//	int TiersDeux[12] = { 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
-//	int TiersTrois[12] = { 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34 };
-//
-//	int estDansTiersUn = 0;
-//	int estDansTiersDeux = 0;
-//	int estDansTiersTrois = 0;
-//
-//	for (int i = 0; i < 12; i++) {
-//		if (numero == TiersUn[i]) {
-//			estDansTiersUn = 1;
-//		}
-//		if (numero == TiersDeux[i]) {
-//			estDansTiersDeux = 1;
-//		}
-//		if (numero == TiersTrois[i]) {
-//			estDansTiersTrois = 1;
-//		}
-//	}
-//
-//	if (estDansTiersUn) {
-//		printf("Le numero gagnant est dans le tiers: t1\n");
-//	}
-//	else if (estDansTiersDeux) {
-//		printf("Le numero gagnant est dans le tiers : t2\n");
-//	}
-//	else if (estDansTiersTrois) {
-//		printf("Le numero gagnant est dans le tiers : t3\n");
-//	}
-//}
-
-//void gain(int paris[], int mises[], int nbParis, int numeroChoisi) {
-//	int totalGains = 0;
-//	for (int i = 0; i < nbParis; i++) {
-//		if (paris[i] == numeroChoisi) {
-//			int gain = mises[i] * 36;
-//			totalGains += gain;
-//			printf("Pari sur le numero %d, mise : %d, gain : %d\n", paris[i], mises[i], gain);
-//		}
-//	}
-//
-//	if (totalGains > 0) {
-//		printf("Total des gains : %d\n", totalGains);
-//	}
-//	else {
-//		printf("Desole, vous avez perdu toutes vos mises.\n");
-//	}
-//}
-
-void Roulette() {
-	srand(time(0));
-
-	int numeros[37] = {
-		0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
-	};
-
-	int nbParis;
-	printf("\nCombien de paris souhaitez-vous faire ? ");
-	scanf("%d", &nbParis);
-
-	int paris[100];
-	int mises[100];
-
-	for (int i = 0; i < nbParis; i++) {
-		printf("Pari %d : Pour un nombre de 0 a 36 [0-36], pair [37] impair [38], pass [39] manque[40], 1 ers 12 [41], 2 nds 12 [42], 3 emes 12 [43], rouge [44], noir [45] : ", i + 1);
-		scanf("%d", &paris[i]);
-
-		if (paris[i] < 0 || (paris[i] > 36 && paris[i] < 37) || (paris[i] > 45)) {
-			printf("Pari invalide. Choisissez un numero entre 0 et 36, ou [37] pour pair, [38] pour impair, [39] pour pass, [40] pour manque, [41] pour 1 ers 12, [42] pour 2 nds 12, [43] pour 3 emes 12, rouge [44], noir [45].\n");
-			i--; // Répéter la saisie du pari pour cette itération.
-			continue;
-		}
-
-		printf("Entrez la mise correspondante : ");
-		scanf("%d", &mises[i]);
-	}
-
-	int numeroGagnant = numeroAleatoire(37); // Génère un numéro aléatoire entre 0 et 36
-
-	printf("Rien ne va plus...\n");
-	int numeroChoisi = numeros[numeroGagnant];
-	printf("Le numero gagnant est : %d\n", numeroChoisi);
-
-	afficherParite(numeroChoisi);
-		afficherPassManque(numeroChoisi);
-		afficherPlage(numeroChoisi);
-		//afficherTiers(numeroChoisi);
-		afficherCouleur(numeroChoisi);
-		//gain(paris, mises, nbParis, numeroChoisi);
-
-
+void gain(int paris[], int mises[], int nbParis, int numeroChoisi) {
 	for (int i = 0; i < nbParis; i++) {
 		if (paris[i] >= 0 && paris[i] <= 36) {
 			if (paris[i] == numeroChoisi) {
@@ -256,5 +149,45 @@ void Roulette() {
 			}
 		}
 	}
+}
 
+void Roulette() {
+	srand(time(0));
+
+	int numeros[37] = {
+		0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+	};
+
+	int nbParis;
+	printf("\nCombien de paris souhaitez-vous faire ? ");
+	scanf("%d", &nbParis);
+
+	int paris[100];
+	int mises[100];
+
+	for (int i = 0; i < nbParis; i++) {
+		printf("Pari %d : Pour un nombre de 0 a 36 [0-36], pair [37] impair [38], pass [39] manque[40], 1 ers 12 [41], 2 nds 12 [42], 3 emes 12 [43], rouge [44], noir [45] : ", i + 1);
+		scanf("%d", &paris[i]);
+
+		if (paris[i] < 0 || (paris[i] > 36 && paris[i] < 37) || (paris[i] > 45)) {
+			printf("Pari invalide. Choisissez un numero entre 0 et 36, ou [37] pour pair, [38] pour impair, [39] pour pass, [40] pour manque, [41] pour 1 ers 12, [42] pour 2 nds 12, [43] pour 3 emes 12, rouge [44], noir [45].\n");
+			i--; // Répéter la saisie du pari pour cette itération.
+			continue;
+		}
+
+		printf("Entrez la mise correspondante : ");
+		scanf("%d", &mises[i]);
+	}
+
+	int numeroGagnant = numeroAleatoire(37); // Génère un numéro aléatoire entre 0 et 36
+
+	printf("Rien ne va plus...\n");
+	int numeroChoisi = numeros[numeroGagnant];
+	printf("Le numero gagnant est : %d\n", numeroChoisi);
+
+	afficherParite(numeroChoisi);
+	afficherPassManque(numeroChoisi);
+	afficherPlage(numeroChoisi);
+	afficherCouleur(numeroChoisi);
+	gain(paris, mises, nbParis, numeroChoisi);
 }
